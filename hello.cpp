@@ -4,7 +4,7 @@
 using namespace std;
 void mergesort(int *arr, size_t left, size_t right);
 void merge(int *arr, size_t left, size_t mid, size_t right);
-size_t binarySearch(int *arr, size_t left, size_t right, int key);
+void binarySearch(int *arr, size_t left, size_t right, int key);
 
 int main()
 {
@@ -33,7 +33,7 @@ int main()
 void mergesort(int *arr, size_t left, size_t right)
 {               
     if (left < right)
-    {printf("yoq");
+    {printf("yoo");
         size_t mid = (left + right) / 2;
         mergesort(arr, left, mid);
         mergesort(arr, mid+1 , right);
@@ -54,7 +54,8 @@ void mergesort(int *arr, size_t left, size_t right)
  * 
  */
 void merge(int *arr, size_t left, size_t mid, size_t right)
-{   
+{   int key[right]; 
+    
     int i;
     // int *key=right;
 // if (left!=(right-1))
@@ -64,18 +65,25 @@ void merge(int *arr, size_t left, size_t mid, size_t right)
 
    if (left = mid)
    {
-    
+    binarySearch(arr,mid,right,key);
    }
    else
     {
-    /* code */
+    
+    binarySearch(arr,left,right,key);
    }
+
+   for ( i = left ; i <=right; i++)
+   {
+    arr[i]= key[i];
+   }
+   
    
    
         // binarySearch(arr,left,mid,key);
         // binarySearch(arr,mid,right,key);
     
-// }
+
 
    
     
@@ -105,9 +113,29 @@ void merge(int *arr, size_t left, size_t mid, size_t right)
  * @param key a key to be searched in for its occurence in the array
  * @return an index to the occurence, return (right + 1) if not found
  */
-size_t binarySearch(int *arr, size_t left, size_t right, int key)
-{
-
+void binarySearch(int *arr, size_t left, size_t right, size_t *key)
+{int i,j,c=0 ;
+    for ( i = left; i <= right; i)
+    {
+        for ( j =left; j <= right; j)
+        {
+            if (arr[i]<arr[j])
+            {
+                key[c] = arr[i];
+                c++;
+                i++;
+            }
+            else if (arr[i]>arr[j])
+            {
+                key[c] = arr[j];
+                c++;
+                j++;
+            }
+        }
+        
+        
+    }
+    
     // TODO: find the midpoint
 
     // TODO: check if the midpoint is the key
